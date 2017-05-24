@@ -1,0 +1,18 @@
+region: us-east-1
+accountId: 794373491471
+#snsUrl: "http://localhost:4100"
+#sqsUrl: "http://localhost:4100"
+Build:
+  - Queues:                           # List of queues to create at startup
+    - Name: local-queue1            # Queue name
+    - Name: local-queue2            # Queue name
+    - Name: A15-QA-TILE-EVENTS-QUEUE
+  - Topics:                           # List of topic to create at startup
+    - Name: local-topic1            # Topic name - with some Subscriptions
+      Subscriptions:                # List of Subscriptions to create for this topic (queues will be created as required)
+        - QueueName: local-queue3   # Queue name
+          Raw: false                # Raw message delivery (true/false)
+        - QueueName: local-queue4   # Queue name
+          Raw: true                 # Raw message delivery (true/false)
+    - Name: local-topic2            # Topic name - no Subscriptions
+
